@@ -19,7 +19,7 @@ public static void main(String[] args) throws IOException{
 	 String queryString = "PREFIX schema: <http://schema.org/>"+
 			 "SELECT DISTINCT  ?o  " +
              "WHERE {"+
-			 "?s schema:keyword7 \"有名人:0.03773059248577996\" ."+
+			 "?s schema:dataline ?data FILTER regex (?data, \"2015年11月10日\") ."+
 			 "?s schema:articleBody ?o.}";
 	Query query = QueryFactory.create(queryString);
 	// Execute the query and obtain results
