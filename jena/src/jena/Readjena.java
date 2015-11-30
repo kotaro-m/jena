@@ -29,8 +29,10 @@ public static void main(String[] args) throws IOException{
 	ResultSet results = qe.execSelect();
 	// Output query results		
 	List<QuerySolution> Temp = ResultSetFormatter.toList(results);
-	for(int i=0;i < Temp.size(); i++)
-		System.out.println(Temp.get(i));
+	for(int i=0;i < Temp.size(); i++){
+		String t = Temp.get(i).toString().replace("( ?o = \"", "").replace("\" )", "");
+		System.out.println(t);
+	}
 	// Important - free up resources used running the query
 	qe.close();
 	}
