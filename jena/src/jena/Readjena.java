@@ -1,11 +1,13 @@
 package jena;
 
 import java.io.IOException;
+import java.util.List;
 
 import com.hp.hpl.jena.query.Query;
 import com.hp.hpl.jena.query.QueryExecution;
 import com.hp.hpl.jena.query.QueryExecutionFactory;
 import com.hp.hpl.jena.query.QueryFactory;
+import com.hp.hpl.jena.query.QuerySolution;
 import com.hp.hpl.jena.query.ResultSet;
 import com.hp.hpl.jena.query.ResultSetFormatter;
 import com.hp.hpl.jena.rdf.model.Model;
@@ -25,8 +27,10 @@ public static void main(String[] args) throws IOException{
 	// Execute the query and obtain results
 	QueryExecution qe = QueryExecutionFactory.create(query, model);
 	ResultSet results = qe.execSelect();
-	// Output query results	
-	ResultSetFormatter.out(System.out, results, query);
+	// Output query results		
+	List<QuerySolution> Temp = ResultSetFormatter.toList(results);
+	for(int i=0;i < Temp.size(); i++)
+		System.out.println(Temp.get(i));
 	// Important - free up resources used running the query
 	qe.close();
 	}
